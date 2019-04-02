@@ -15,5 +15,6 @@
 3. 기타 사항 
 gitignore에서 *.csv를 제외하도록 하였습니다.
 1번 문제는 pa-03번 리포지토리에 올려두었습니다.
+정렬 기준은 ip, 시간으로 2가지입니다.
 
 ![thumbnail](https://user-images.githubusercontent.com/37707665/55413535-76583300-55a4-11e9-9b3d-d36073055c9d.png)
