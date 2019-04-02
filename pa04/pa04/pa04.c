@@ -173,6 +173,6 @@ int compare2(const void *v1, const void *v2) {
 	const Category *c2 = (const Category *)v2;
 	if (strcmp(c1->IP, c2->IP) > 0) return 1;
 	else if (strcmp(c1->IP, c2->IP) == 0)
-		return (c1->Time) - (c2->Time);
+		return (c1->SortTime) - (c2->SortTime);
 	else return -1;
 }
