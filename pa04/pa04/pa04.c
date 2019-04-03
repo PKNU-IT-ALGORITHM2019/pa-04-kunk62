@@ -9,21 +9,21 @@
 
 typedef struct category {
 	char *IP;
-	char *SortTime; //Á¤·ÄÀ» À§ÇÑ ½Ã°£ ¿ä¼Ò¸¦ µû·Î Á¤ÀÇ
+	char *SortTime; //ì •ë ¬ì„ ìœ„í•œ ì‹œê°„ ìš”ì†Œë¥¼ ë”°ë¡œ ì •ì˜
 	char *Time;
 	char *URL;
 	int status;
 }Category;
 
-char *month(char *token); //¿µ¾î·Î µÈ ¿ùº° ¹®ÀÚ¿­À» ¼ıÀÚ ¹®ÀÚ¿­·Î Ä¡È¯
+char *month(char *token); //ì˜ì–´ë¡œ ëœ ì›”ë³„ ë¬¸ìì—´ì„ ìˆ«ì ë¬¸ìì—´ë¡œ ì¹˜í™˜
 void read(char *s);
-void sort(int mode);
+void sort();
 int read_line(FILE * fp, char str[], int n);
-int compare1(const void *v1, const void *v2); //½Ã°£ ±âÁØÀ¸·Î ºñ±³
-int compare2(const void *v1, const void *v2); //IP ±âÁØÀ¸·Î ºñ±³
+int compare1(const void *v1, const void *v2); //ì‹œê°„ ê¸°ì¤€ìœ¼ë¡œ ë¹„êµ
+int compare2(const void *v1, const void *v2); //IP ê¸°ì¤€ìœ¼ë¡œ ë¹„êµ
 void print();
 Category list[N];
-int status; //Ãâ·Â »óÅÂ ¼³Á¤
+int status; //ì¶œë ¥ ìƒíƒœ ì„¤ì •
 
 int main() {
 	char command_line[buffer_len];
@@ -46,8 +46,8 @@ int main() {
 		else if (strcmp(cmd, "sort") == 0) {
 			arg2 = strtok(NULL, " ");
 			if (arg2 == NULL) continue;
-			else if (strcmp(arg2, "-t") == 0) { status = 1; sort(1); }
-			else if (strcmp(arg2, "-ip") == 0) { status = 2; sort(2); }
+			else if (strcmp(arg2, "-t") == 0) { status = 1; sort(status); }
+			else if (strcmp(arg2, "-ip") == 0) { status = 2; sort(status); }
 		}
 		else printf("Command do not exist.\n\n");
 	}
@@ -114,11 +114,11 @@ void read(char *s) {
 	fclose(fp);
 }
 
-void sort(int mode) {
-	if (mode == 1) //time
+void sort() {
+	if (status == 1) //time
 		qsort(list, N, sizeof(Category), compare1);
 
-	else if (mode == 2) { //ip
+	else if (status == 2) { //ip
 		qsort(list, N, sizeof(Category), compare2);
 	}
 }
